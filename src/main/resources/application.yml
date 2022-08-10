@@ -1,0 +1,25 @@
+server:
+  port: 8080
+  tomcat:
+    threads:
+      max: 600
+spring:
+  profiles:
+    active: final
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db:3306/docker #db就是服务的名字
+    username: root
+    password: q12345
+    hikari:
+      maximum-pool-size: 50
+  jackson:
+    #配置时间格式化 前端传过来的时候根据这个格式timestamp
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+#myenv:
+#  env1:

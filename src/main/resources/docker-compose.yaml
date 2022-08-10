@@ -1,0 +1,25 @@
+version: "3"
+services:
+  webapp:
+    image: webapp:v1
+    build:
+      context: .   #代表上下文当前目录
+      dockerfile: Dockerfile     #DockerFile的文件名字
+    container_name: webapp
+    ports:
+      - "9999:8080"
+    depends_on:
+     - db
+    restart: always #Docker容器重启时，当前容器也会自动重启。
+    environment:
+      myenv.env1: 666
+
+  db:
+    image: mysql
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: docker           #mysql启动后会默认创建一个docker的database
+      MYSQL_ROOT_PASSWORD: q12345         #root的密码
+      MYSQL_ROOT_HOST: '%'         #代表任何机器都可以连接当前数据库
